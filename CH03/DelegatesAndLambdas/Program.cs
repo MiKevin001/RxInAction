@@ -140,9 +140,11 @@ namespace DelegatesAndLambdas
             var actions = new List<ActionDelegate>();
             for (var i = 0; i < 5; i++)
             {
+                // i is a capture variable
+                // anonymous delegate as the closure
                 actions.Add(delegate () { Console.WriteLine(i); });
             }
-            foreach (var act in actions) act();
+            foreach (var act in actions) act();// act() gets the last updated i
         }
 
         private static void CapturedVariables()
