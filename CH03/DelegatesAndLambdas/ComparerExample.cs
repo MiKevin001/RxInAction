@@ -38,6 +38,7 @@ namespace DelegatesAndLambdas
             words.Sort(new LengthComparer());
             Tools.ForEach(words, Console.WriteLine);
 
+            // a general comparer that accepts a func, no need to create new comparer classes each time
             words = new List<string> { "ab", "a", "aabb", "abc" };
             words.Sort(new GenericComparer<string>((x, y) =>
                 (x.Length == y.Length)
