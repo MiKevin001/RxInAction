@@ -34,6 +34,7 @@ namespace DelegatesAndLambdas
 
         class ClassWithLazy
         {
+            // using lambda func
             Lazy<HeavyClass> _lazyHeavyClass = new Lazy<HeavyClass>(() =>
               {
                   var heavy = new HeavyClass();

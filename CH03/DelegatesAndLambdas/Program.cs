@@ -10,6 +10,7 @@ namespace DelegatesAndLambdas
     class Program
     {
 
+        // create delegate types which are used to create actual delegate
         public delegate bool ComparisonTest(string first, string second);
         public delegate void ActionDelegate();
 
@@ -56,6 +57,7 @@ namespace DelegatesAndLambdas
 
         private static void IntroducingLambdas()
         {
+            // anonymous method can be created by lambda or delegate()
             ComparisonTest x = (s1, s2) => s1 == s2;
             ComparisonTest y = delegate (string s1, string s2) { return s1 == s2; };
 
@@ -69,6 +71,7 @@ namespace DelegatesAndLambdas
             //Passing method as parameter
             cities = new[] { "London", "Madrid", "TelAviv" };
             friends = new[] { "Minnie", "Goofey", "MickeyM" };
+            // StringComparators.CompareLength is a method which is passed to the delegate
             Console.WriteLine("Are friendss and cities similar? {0}", AreSimilar(friends, cities, StringComparators.CompareLength));
         }
 
@@ -78,12 +81,14 @@ namespace DelegatesAndLambdas
             string s2 = "World";
             var comparators = new StringComparators();
 
+            // use new to create a new delegate
             ComparisonTest test = new ComparisonTest(comparators.CompareContent);
             Console.WriteLine("CompareContent returned: {0}", test(s1, s2));
 
             test = new ComparisonTest(StringComparators.CompareLength);
             Console.WriteLine("CompareLength returned: {0}", test(s1, s2));
 
+            // create a new delegate by direct assignment
             ComparisonTest test2 = comparators.CompareContent;
         }
 
@@ -125,7 +130,7 @@ namespace DelegatesAndLambdas
             string[] cities = new[] { "London", "Madrid", "TelAviv" };
             string[] friends = new[] { "Minnie", "Goofey", "MickeyM" };
 
-            //Anonymous Method
+            //Anonymous Method, can be assigned by delegate() or lambda
             ComparisonTest lengthComparer = delegate (string first, string second)
             {
                 return first.Length == second.Length;
@@ -144,7 +149,7 @@ namespace DelegatesAndLambdas
                 // anonymous delegate as the closure
                 actions.Add(delegate () { Console.WriteLine(i); });
             }
-            foreach (var act in actions) act();// act() gets the last updated i
+            foreach (var act in actions) act();// act() gets the last updated i, which is 5
         }
 
         private static void CapturedVariables()
@@ -159,6 +164,7 @@ namespace DelegatesAndLambdas
                 };
                 moduloBase = 3;
             }
+            // anonymous method which depends on capture variables will evaluate the capture variable by it's last updated time
             var similarByMod = AreSimilar(new[] { "AB" }, new[] { "ABCD" }, comparer);
 
             Console.WriteLine("Similar by modulo: {0}", similarByMod);
