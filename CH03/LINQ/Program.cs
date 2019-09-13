@@ -107,6 +107,7 @@ namespace LINQExamples
 
             numbers.Add(6);
 
+            // evenNumbers will include 6, since it's iterator with defered evaluation
             foreach (var number in evenNumbers)
             {
                 Console.WriteLine(number);
