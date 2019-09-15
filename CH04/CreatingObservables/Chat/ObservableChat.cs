@@ -15,6 +15,9 @@ public class ObservableConnection : ObservableBase<string>
    
     protected override IDisposable SubscribeCore(IObserver<string> observer)
     {
+        /* In this case, the observable class incorporates an event source, this event source 
+         * is assigned with oberver's methods
+         */
         Action<string> received = message =>
         {
             observer.OnNext(message);
@@ -34,8 +37,8 @@ public class ObservableConnection : ObservableBase<string>
         _chatConnection.Closed += closed;
         _chatConnection.Error += error;
 
-        // return type of subscripion is a Disposable, which will do resource release for 
-        // observable when despose
+        /* return type of subscripion is a Disposable, which will do resource release for 
+        observable when despose */
         return Disposable.Create(() =>
         {
             _chatConnection.Received -= received;
