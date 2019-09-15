@@ -5,6 +5,7 @@ namespace CreatingObservables
 {
     public class NumbersObservable : IObservable<int>
     {
+        // the number of observables
         private readonly int _amount;
 
         public NumbersObservable(int amount)

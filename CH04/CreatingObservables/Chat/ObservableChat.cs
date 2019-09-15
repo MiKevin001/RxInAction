@@ -34,6 +34,8 @@ public class ObservableConnection : ObservableBase<string>
         _chatConnection.Closed += closed;
         _chatConnection.Error += error;
 
+        // return type of subscripion is a Disposable, which will do resource release for 
+        // observable when despose
         return Disposable.Create(() =>
         {
             _chatConnection.Received -= received;
